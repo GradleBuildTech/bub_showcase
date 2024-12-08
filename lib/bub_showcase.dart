@@ -1,2 +1,2 @@
-export 'widgets/explain_showcase_widget.dart';
-export 'showcase/showcase_focus.dart';
+export 'src/widgets/explain_showcase_widget.dart';
+export 'src/showcase/showcase_focus.dart';

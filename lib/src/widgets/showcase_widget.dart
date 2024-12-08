@@ -1,9 +1,9 @@
-import 'package:bub_showcase/paint/explain_showcase_paint.dart';
-import 'package:bub_showcase/paint/shadow_paint.dart';
-import 'package:bub_showcase/showcase/showcase_explain.dart';
-import 'package:bub_showcase/showcase/showcase_focus.dart';
-import 'package:bub_showcase/showcase_controller.dart';
-import 'package:bub_showcase/widgets/explain_showcase_widget.dart';
+import 'package:bub_showcase/src/paint/explain_showcase_paint.dart';
+import 'package:bub_showcase/src/paint/shadow_paint.dart';
+import 'package:bub_showcase/src/showcase/showcase_explain.dart';
+import 'package:bub_showcase/src/showcase/showcase_focus.dart';
+import 'package:bub_showcase/src/showcase_controller.dart';
+import 'package:bub_showcase/src/widgets/explain_showcase_widget.dart';
 import 'package:flutter/material.dart';
 
 /// Widget to show guide line
@@ -44,6 +44,8 @@ class ShowcaseWidget extends StatefulWidget {
 
 class _ShowcaseWidgetState extends State<ShowcaseWidget>
     implements GuideLineController {
+  /// current focus
+  /// default is first target
   TargetShowcaseFocus? currentFocus;
   Widget? buildContentWidget;
   GlobalKey? _explainKey;
@@ -81,6 +83,11 @@ class _ShowcaseWidgetState extends State<ShowcaseWidget>
     );
   }
 
+  /// build content widget
+  /// [guideLineExplain] [TargetShowcaseExplain]
+  /// default is [Offset.zero]
+  /// default is [Size.zero]
+  /// return [Widget]
   Widget _buildContentWidget(TargetShowcaseExplain? guideLineExplain,
       {Offset? focusOffset, Size? focusSize}) {
     if (guideLineExplain == null) return const SizedBox.shrink();

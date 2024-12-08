@@ -1,4 +1,4 @@
-import 'package:bub_showcase/utils.dart';
+import 'package:bub_showcase/src/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

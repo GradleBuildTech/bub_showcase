@@ -1,4 +1,4 @@
-import 'package:bub_showcase/ext/context_ext.dart';
+import 'package:bub_showcase/src/ext/context_ext.dart';
 import 'package:flutter/material.dart';
 
 import 'build_button.dart';
