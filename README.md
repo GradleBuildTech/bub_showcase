@@ -7,6 +7,9 @@ A Flutter package to create interactive step-by-step guides and highlights for y
 
 ## Preview
 
+![image](https://github.com/user-attachments/assets/62ccccc1-bdec-4bcd-8b50-e84b25c2e03b)
+
+
 ![The example app running in Android](https://your-image-url.com/preview/Showcaseoverlay.gif)
 
 ## Migration Guide for Release 2.0.0
