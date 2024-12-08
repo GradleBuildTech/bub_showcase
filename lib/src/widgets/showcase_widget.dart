@@ -227,6 +227,18 @@ class _ShowcaseWidgetState extends State<ShowcaseWidget>
         child: explainNavigateView);
   }
 
+  void _displayNewShowCase(int index) {
+    setState(() {
+      currentFocus = widget.targets[index];
+      final renderBox = currentFocus?.keyTarget?.currentContext
+          ?.findRenderObject() as RenderBox?;
+      final offset = renderBox?.localToGlobal(Offset.zero);
+      final size = renderBox?.size;
+      buildContentWidget = _buildContentWidget(currentFocus?.explain,
+          focusOffset: offset, focusSize: size);
+    });
+  }
+
   @override
   void onFinished() => widget.onFinished?.call();
 
@@ -234,15 +246,7 @@ class _ShowcaseWidgetState extends State<ShowcaseWidget>
   void onPrevious() {
     final currentIndex = widget.targets.indexOf(currentFocus!);
     if (currentIndex > 0) {
-      setState(() {
-        currentFocus = widget.targets[currentIndex - 1];
-        final renderBox = currentFocus?.keyTarget?.currentContext
-            ?.findRenderObject() as RenderBox?;
-        final offset = renderBox?.localToGlobal(Offset.zero);
-        final size = renderBox?.size;
-        buildContentWidget = _buildContentWidget(currentFocus?.explain,
-            focusOffset: offset, focusSize: size);
-      });
+      _displayNewShowCase(currentIndex - 1);
     }
   }
 
@@ -255,15 +259,7 @@ class _ShowcaseWidgetState extends State<ShowcaseWidget>
   void onSkip() {
     final currentIndex = widget.targets.indexOf(currentFocus!);
     if (currentIndex < widget.targets.length - 1) {
-      setState(() {
-        currentFocus = widget.targets[currentIndex + 1];
-        final renderBox = currentFocus?.keyTarget?.currentContext
-            ?.findRenderObject() as RenderBox?;
-        final offset = renderBox?.localToGlobal(Offset.zero);
-        final size = renderBox?.size;
-        buildContentWidget = _buildContentWidget(currentFocus?.explain,
-            focusOffset: offset, focusSize: size);
-      });
+      _displayNewShowCase(currentIndex + 1);
     } else {
       onFinished();
     }
