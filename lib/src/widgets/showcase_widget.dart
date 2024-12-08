@@ -1,12 +1,19 @@
-import 'package:bub_showcase/core/components/widgets/guid_line/guide_line_controller.dart';
-import 'package:bub_showcase/core/components/widgets/guid_line/paint/explain_guide_line_paint.dart';
-import 'package:bub_showcase/core/components/widgets/guid_line/paint/shadow_paint.dart';
-import 'package:bub_showcase/core/components/widgets/guid_line/target_guid_line/target_guide_line_explain.dart';
-import 'package:bub_showcase/core/components/widgets/guid_line/target_guid_line/target_guide_line_focus.dart';
-import 'package:bub_showcase/core/components/widgets/guid_line/widgets/explain_guide_line_widget.dart';
+import 'package:bub_showcase/paint/explain_showcase_paint.dart';
+import 'package:bub_showcase/paint/shadow_paint.dart';
+import 'package:bub_showcase/showcase/showcase_explain.dart';
+import 'package:bub_showcase/showcase/showcase_focus.dart';
+import 'package:bub_showcase/showcase_controller.dart';
+import 'package:bub_showcase/widgets/explain_showcase_widget.dart';
 import 'package:flutter/material.dart';
 
 /// Widget to show guide line
+/// [targets] list of [TargetShowcaseFocus]
+/// [parentWidth] width of parent widget
+/// [parentHeight] height of parent widget
+/// [onSkip] callback when skip button clicked
+/// [onPrevious] callback when previous button clicked
+///   if [onPrevious] is null, previous button will not be shown
+/// [onFinished] callback when finished button clicked
 class ShowcaseWidget extends StatefulWidget {
   final List<TargetShowcaseFocus> targets;
   final double parentWidth;
@@ -26,7 +33,10 @@ class ShowcaseWidget extends StatefulWidget {
     required this.targets,
     required this.parentHeight,
     required this.parentWidth,
-  }) : assert(targets.length > 0, 'targets must not be empty');
+  }) :
+
+        /// assert that targets must not be empty
+        assert(targets.length > 0, 'targets must not be empty');
 
   @override
   State<ShowcaseWidget> createState() => _ShowcaseWidgetState();
