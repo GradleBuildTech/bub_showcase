@@ -2,6 +2,7 @@ import 'package:bub_showcase/src/paint/explain_showcase_paint.dart';
 import 'package:bub_showcase/src/paint/shadow_paint.dart';
 import 'package:bub_showcase/src/showcase/showcase_explain.dart';
 import 'package:bub_showcase/src/showcase/showcase_focus.dart';
+import 'package:bub_showcase/src/showcase/showcase_position.dart';
 import 'package:bub_showcase/src/showcase_controller.dart';
 import 'package:bub_showcase/src/widgets/explain_showcase_widget.dart';
 import 'package:flutter/material.dart';
@@ -118,32 +119,32 @@ class _ShowcaseWidgetState extends State<ShowcaseWidget>
 
     final navigateWidget = CustomPaint(
       size: const Size(16, 16),
-      painter: switch (guideLineExplain.contentAlign) {
-        ContentAlign.top => DownwardTrianglePainter(color: groundColor),
-        ContentAlign.bottom => UpwardTrianglePainter(color: groundColor),
-        ContentAlign.left => RightTrianglePainter(color: groundColor),
-        ContentAlign.right => LeftTrianglePainter(color: groundColor),
+      painter: switch (guideLineExplain.showcasePosition) {
+        ShowcasePosition.top => DownwardTrianglePainter(color: groundColor),
+        ShowcasePosition.bottom => UpwardTrianglePainter(color: groundColor),
+        ShowcasePosition.left => RightTrianglePainter(color: groundColor),
+        ShowcasePosition.right => LeftTrianglePainter(color: groundColor),
       },
     );
     const sizedBox = SizedBox(width: 4.0, height: 4.0);
     List<Widget> listWidget = [
       sizedBox,
       Padding(
-        padding: (guideLineExplain.contentAlign == ContentAlign.right ||
-                guideLineExplain.contentAlign == ContentAlign.left)
-            ? const EdgeInsets.only(top: 12)
+        padding: (guideLineExplain.showcasePosition == ShowcasePosition.right ||
+                guideLineExplain.showcasePosition == ShowcasePosition.left)
+            ? const EdgeInsets.only(top: 12.0)
             : const EdgeInsets.only(left: 12.0),
         child: navigateWidget,
       ),
       explainWidget
     ];
-    if (guideLineExplain.contentAlign == ContentAlign.left ||
-        guideLineExplain.contentAlign == ContentAlign.top) {
+    if (guideLineExplain.showcasePosition == ShowcasePosition.left ||
+        guideLineExplain.showcasePosition == ShowcasePosition.top) {
       listWidget = listWidget.reversed.toList();
     }
     final explainNavigateView =
-        (guideLineExplain.contentAlign == ContentAlign.right ||
-                guideLineExplain.contentAlign == ContentAlign.left)
+        (guideLineExplain.showcasePosition == ShowcasePosition.right ||
+                guideLineExplain.showcasePosition == ShowcasePosition.left)
             ? Row(
                 key: _explainKey,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,26 +168,26 @@ class _ShowcaseWidgetState extends State<ShowcaseWidget>
     var explainPositionX = 0.0;
     var explainPositionY = 0.0;
 
-    switch (guideLineExplain.contentAlign) {
-      case ContentAlign.top:
+    switch (guideLineExplain.showcasePosition) {
+      case ShowcasePosition.top:
         explainPositionX = positionX;
         explainPositionY = positionY - explainHeight;
         break;
-      case ContentAlign.bottom:
+      case ShowcasePosition.bottom:
         explainPositionX = positionX;
         explainPositionY = positionY + focusHeight;
         break;
-      case ContentAlign.left:
+      case ShowcasePosition.left:
         explainPositionX = positionX - explainWidth;
         explainPositionY = positionY;
         break;
-      case ContentAlign.right:
+      case ShowcasePosition.right:
         explainPositionX = positionX + focusWidth;
         explainPositionY = positionY;
         break;
     }
 
-    if (guideLineExplain.contentAlign == ContentAlign.top) {
+    if (guideLineExplain.showcasePosition == ShowcasePosition.top) {
       return Padding(
         padding: EdgeInsets.only(left: explainPositionX),
         child: SizedBox(
@@ -203,7 +204,7 @@ class _ShowcaseWidgetState extends State<ShowcaseWidget>
       );
     }
 
-    if (guideLineExplain.contentAlign == ContentAlign.left) {
+    if (guideLineExplain.showcasePosition == ShowcasePosition.left) {
       return Padding(
         padding: EdgeInsets.only(top: explainPositionY),
         child: SizedBox(
