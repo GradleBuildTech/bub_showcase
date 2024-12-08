@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 import 'showcase/showcase_focus.dart';
 import 'widgets/showcase_widget.dart';
 
-class GuideLineOverlay {
+/// Overlay to show guide line
+/// [targets] list of [TargetShowcaseFocus]
+/// [parentWidth] width of parent widget
+/// [parentHeight] height of parent widget
+/// [finish] callback when finished button clicked
+class ShowcaseOverlay {
   final List<TargetShowcaseFocus> targets;
   final double parentWidth;
   final double parentHeight;
@@ -13,7 +18,7 @@ class GuideLineOverlay {
 
   OverlayEntry? _overlayEntry;
 
-  GuideLineOverlay({
+  ShowcaseOverlay({
     required this.targets,
     required this.parentHeight,
     required this.parentWidth,
